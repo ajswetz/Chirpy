@@ -27,6 +27,9 @@ func main() {
 	// Register server readiness handler
 	mux.HandleFunc("GET /api/healthz", readinessHandler)
 
+	// Register validate chirp handler
+	mux.HandleFunc("POST /api/validate_chirp", validateChirpHandler)
+
 	/// ADMIN ///
 
 	// Register metrics handler
