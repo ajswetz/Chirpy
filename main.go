@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"sync/atomic"
 )
@@ -36,10 +36,10 @@ func main() {
 	}
 
 	// Start listening on port 8080 and serving responses
-	fmt.Println("Starting Chirpy . . . ")
+	log.Println("Starting Chirpy . . . ")
 	err := server.ListenAndServe()
 	if err != nil {
-		fmt.Printf("An error occurred: %v\n", err)
+		log.Printf("An error occurred: %v\n", err)
 	}
 
 }
