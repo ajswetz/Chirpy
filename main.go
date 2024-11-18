@@ -16,18 +16,24 @@ func main() {
 		fileserverHits: atomic.Int32{},
 	}
 
+	/// APP ///
+
 	// Register file server handler wrapped by middlewareMetricsInc() to track number of hits
 	fileServerHandler := http.StripPrefix("/app/", http.FileServer(http.Dir(".")))
 	mux.Handle("/app/", srvState.middlewareMetricsInc(fileServerHandler))
 
+	/// API ///
+
 	// Register server readiness handler
-	mux.HandleFunc("/healthz", readinessHandler)
+	mux.HandleFunc("GET /api/healthz", readinessHandler)
+
+	/// ADMIN ///
 
 	// Register metrics handler
-	mux.HandleFunc("/metrics", srvState.metricsHandler)
+	mux.HandleFunc("GET /admin/metrics", srvState.metricsHandler)
 
 	// Register reset metrics handler
-	mux.HandleFunc("/reset", srvState.resetMetricsHandler)
+	mux.HandleFunc("POST /admin/reset", srvState.resetMetricsHandler)
 
 	// Define http.Server listening on port 8080
 	server := &http.Server{
