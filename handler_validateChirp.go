@@ -9,8 +9,8 @@ type Chirp struct {
 	Body string `json:"body"`
 }
 
-type respValid struct {
-	Valid bool `json:"valid"`
+type returnVals struct {
+	CleanedBody string `json:"cleaned_body"`
 }
 
 func validateChirpHandler(resWriter http.ResponseWriter, req *http.Request) {
@@ -30,9 +30,12 @@ func validateChirpHandler(resWriter http.ResponseWriter, req *http.Request) {
 
 	}
 
-	// else - return "valid" response
-	respondWithJSON(resWriter, http.StatusOK, respValid{
-		Valid: true,
+	// Replace profanity if found
+	cleanChirp := replaceProfanity(chirpJson.Body)
+
+	// else - return valid, cleaned response
+	respondWithJSON(resWriter, http.StatusOK, returnVals{
+		CleanedBody: cleanChirp,
 	})
 
 }
