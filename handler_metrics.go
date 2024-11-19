@@ -26,16 +26,3 @@ func (cfg *apiConfig) metricsHandler(resWriter http.ResponseWriter, _ *http.Requ
 	resWriter.Write([]byte(htmlText))
 
 }
-
-func (cfg *apiConfig) resetMetricsHandler(resWriter http.ResponseWriter, _ *http.Request) {
-
-	resWriter.Header().Add("Content-Type:", "text/plain; charset=utf-8")
-	resWriter.WriteHeader(200)
-
-	// Reset current server hits metric to 0
-	cfg.fileserverHits.Store(int32(0))
-
-	// Write response text using .Write() method
-	resWriter.Write([]byte("Page hit metric has been reset to 0."))
-
-}
