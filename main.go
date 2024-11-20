@@ -40,19 +40,28 @@ func main() {
 
 	////// REGISTER HANDLERS //////
 
-	/// APP ///
+	/// APP ENDPOINT ///
 
 	// Register file server handler wrapped by middlewareMetricsInc() to track number of hits
 	fileServerHandler := http.StripPrefix("/app/", http.FileServer(http.Dir(".")))
 	mux.Handle("/app/", srvState.middlewareMetricsInc(fileServerHandler))
 
-	/// API ///
+	/// API HEALTHZ ENDPOINT ///
 
 	// Register server readiness handler
 	mux.HandleFunc("GET /api/healthz", readinessHandler)
 
+	//// API USERS ENDPOINT ////
+
 	// Register create user handler
 	mux.HandleFunc("POST /api/users", srvState.createUserHandler)
+
+	//// API LOGIN ENDPOINT ////
+
+	// Register login handler
+	mux.HandleFunc("POST /api/login", srvState.loginHandler)
+
+	//// API CHIRPS ENDPOINT ////
 
 	// Register create chirp handler
 	mux.HandleFunc("POST /api/chirps", srvState.createChirpHandler)
@@ -63,7 +72,7 @@ func main() {
 	// Register get single chirp handler
 	mux.HandleFunc("GET /api/chirps/{chirpID}", srvState.getSingleChirpHandler)
 
-	/// ADMIN ///
+	/// ADMIN ENDPOINT ///
 
 	// Register metrics handler
 	mux.HandleFunc("GET /admin/metrics", srvState.metricsHandler)

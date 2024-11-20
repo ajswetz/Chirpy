@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/ajswetz/Chirpy/internal/auth"
+	"github.com/ajswetz/Chirpy/internal/database"
 	"github.com/google/uuid"
 )
 
@@ -18,7 +20,8 @@ type User struct {
 func (cfg *apiConfig) createUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	type parameters struct {
-		Email string `json:"email"`
+		Email    string `json:"email"`
+		Password string `json:"password"`
 	}
 
 	// Decode JSON from request
@@ -30,8 +33,19 @@ func (cfg *apiConfig) createUserHandler(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
+	// Hash password
+	hashedPass, err := auth.HashPassword(params.Password)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "There was a problem hashing your password", err)
+		return
+	}
+
 	// Send query to database to create new user
-	dbUser, err := cfg.db.CreateUser(r.Context(), params.Email)
+	newUserParams := database.CreateUserParams{
+		Email:          params.Email,
+		HashedPassword: hashedPass,
+	}
+	dbUser, err := cfg.db.CreateUser(r.Context(), newUserParams)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Couldn't create user in the database", err)
 	}
