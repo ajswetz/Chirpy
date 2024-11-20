@@ -51,11 +51,17 @@ func main() {
 	// Register server readiness handler
 	mux.HandleFunc("GET /api/healthz", readinessHandler)
 
-	// Register validate chirp handler
-	mux.HandleFunc("POST /api/validate_chirp", validateChirpHandler)
-
 	// Register create user handler
 	mux.HandleFunc("POST /api/users", srvState.createUserHandler)
+
+	// Register create chirp handler
+	mux.HandleFunc("POST /api/chirps", srvState.createChirpHandler)
+
+	// Register get all chirps handler
+	mux.HandleFunc("GET /api/chirps", srvState.getAllChirpsHandler)
+
+	// Register get single chirp handler
+	mux.HandleFunc("GET /api/chirps/{chirpID}", srvState.getSingleChirpHandler)
 
 	/// ADMIN ///
 

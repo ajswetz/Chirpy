@@ -8,10 +8,6 @@ import (
 	"github.com/google/uuid"
 )
 
-type parameters struct {
-	Email string `json:"email"`
-}
-
 type User struct {
 	ID        uuid.UUID `json:"id"`
 	CreatedAt time.Time `json:"created_at"`
@@ -20,6 +16,10 @@ type User struct {
 }
 
 func (cfg *apiConfig) createUserHandler(w http.ResponseWriter, r *http.Request) {
+
+	type parameters struct {
+		Email string `json:"email"`
+	}
 
 	// Decode JSON from request
 	params := parameters{}
