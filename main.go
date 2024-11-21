@@ -60,6 +60,9 @@ func main() {
 	// Register create user handler
 	mux.HandleFunc("POST /api/users", srvState.createUserHandler)
 
+	// Register update user email and password handler
+	mux.HandleFunc("PUT /api/users", srvState.updateUserHandler)
+
 	//// API AUTH ENDPOINTS ////
 
 	// Register login handler
@@ -81,6 +84,9 @@ func main() {
 
 	// Register get single chirp handler
 	mux.HandleFunc("GET /api/chirps/{chirpID}", srvState.getSingleChirpHandler)
+
+	// Register delete chirp handler
+	mux.HandleFunc("DELETE /api/chirps/{chirpID}", srvState.deleteChirpHandler)
 
 	/// ADMIN ENDPOINT ///
 
