@@ -28,11 +28,15 @@ func main() {
 	// Get platform from .env
 	platform := os.Getenv("PLATFORM")
 
+	// Get secret key from .env
+	secret := os.Getenv("SECRET_KEY")
+
 	// Create server state tracker
 	srvState := &apiConfig{
 		fileserverHits: atomic.Int32{},
 		db:             dbQueries,
 		platform:       platform,
+		secret:         secret,
 	}
 
 	// Create new HTTP request multiplexer
@@ -56,10 +60,16 @@ func main() {
 	// Register create user handler
 	mux.HandleFunc("POST /api/users", srvState.createUserHandler)
 
-	//// API LOGIN ENDPOINT ////
+	//// API AUTH ENDPOINTS ////
 
 	// Register login handler
 	mux.HandleFunc("POST /api/login", srvState.loginHandler)
+
+	// Register refresh handler
+	mux.HandleFunc("POST /api/refresh", srvState.refreshTokenHandler)
+
+	// Register revoke refresh token handler
+	mux.HandleFunc("POST /api/revoke", srvState.revokeTokenHandler)
 
 	//// API CHIRPS ENDPOINT ////
 
