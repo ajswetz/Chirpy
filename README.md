@@ -44,6 +44,7 @@ Example:
 
 ##### Success
 **Status Code:** `201`
+
 **Response Body:**
 ```json
 {
@@ -57,6 +58,7 @@ Example:
 
 ##### Failure
 **Status Code:** `500`
+
 **Response Body (server side problems):**
 ```json
 {
@@ -112,6 +114,7 @@ Example:
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```json
 {
@@ -125,6 +128,7 @@ Example:
 
 ##### Failure
 **Status Code:** `401`
+
 **Response Body (Missing or invalid authentication token):**
 ```json
 {
@@ -139,6 +143,7 @@ Example:
 ```
 
 **Status Code:** `500`
+
 **Response Body (server side problems):**
 ```json
 {
@@ -191,6 +196,7 @@ Example:
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```json
 {
@@ -206,6 +212,7 @@ Example:
 
 ##### Failure
 **Status Code:** `401`
+
 **Response Body (Incorrect email or password):**
 ```json
 {
@@ -214,6 +221,7 @@ Example:
 ```
 
 **Status Code:** `500`
+
 **Response Body (Problem generating or storing access or refresh token):**
 ```json
 {
@@ -242,6 +250,7 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```json
 {
@@ -251,6 +260,7 @@ No Request Body processed by this endpoint
 
 ##### Failure
 **Status Code:** `400`
+
 **Response Body (Bad Request - Missing Authorization Header):**
 ```json
 {
@@ -259,6 +269,7 @@ No Request Body processed by this endpoint
 ```
 
 **Status Code:** `401`
+
 **Response Body (Invalid or expired refresh token):**
 ```json
 {
@@ -273,6 +284,7 @@ No Request Body processed by this endpoint
 ```
 
 **Status Code:** `500`
+
 **Response Body:**
 ```json
 {
@@ -301,11 +313,13 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `204`
+
 **Response Body:**
 No response body sent upon successful request.
 
 ##### Failure
 **Status Code:** `400`
+
 **Response Body (Bad Request - Missing Authorization Header):**
 ```json
 {
@@ -345,6 +359,7 @@ Example:
 
 ##### Success
 **Status Code:** `201`
+
 **Response Body:**
 ```json
 {
@@ -358,6 +373,7 @@ Example:
 
 ##### Failure
 **Status Code:** `400`
+
 **Response Body (Bad Request - Missing Authorization Header):**
 ```json
 {
@@ -366,6 +382,7 @@ Example:
 ```
 
 **Status Code:** `401`
+
 **Response Body (Invalid access token):**
 ```json
 {
@@ -374,6 +391,7 @@ Example:
 ```
 
 **Status Code:** `400`
+
 **Response Body (Bad Request - Chirp too long):**
 ```json
 {
@@ -382,6 +400,7 @@ Example:
 ```
 
 **Status Code:** `500`
+
 **Response Body (Internal server error):**
 ```json
 {
@@ -420,6 +439,7 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```json
 [
@@ -456,6 +476,7 @@ No Request Body processed by this endpoint
 
 ##### Failure
 **Status Code:** `400`
+
 **Response Body (Bad request when attempting to filter by invalid author ID):**
 ```json
 {
@@ -464,6 +485,7 @@ No Request Body processed by this endpoint
 ```
 
 **Status Code:** `500`
+
 **Response Body (server error fetching chirps from the database):**
 ```json
 {
@@ -495,6 +517,7 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```json
 {
@@ -508,6 +531,7 @@ No Request Body processed by this endpoint
 
 ##### Failure
 **Status Code:** `400`
+
 **Response Body (Bad request):**
 ```json
 {
@@ -516,6 +540,7 @@ No Request Body processed by this endpoint
 ```
 
 **Status Code:** `404`
+
 **Response Body (Chirp not found in the database):**
 ```json
 {
@@ -550,11 +575,13 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `204`
+
 **Response Body:**
 No response body returned upon successful request.
 
 ##### Failure
 **Status Code:** `401`
+
 **Response Body (Missing or invalid access token):**
 ```json
 {
@@ -569,6 +596,7 @@ No response body returned upon successful request.
 ```
 
 **Status Code:** `400`
+
 **Response Body:**
 ```json
 {
@@ -577,6 +605,7 @@ No response body returned upon successful request.
 ```
 
 **Status Code:** `404`
+
 **Response Body (Chirp not found in the database):**
 ```json
 {
@@ -585,6 +614,7 @@ No response body returned upon successful request.
 ```
 
 **Status Code:** `403`
+
 **Response Body:**
 ```json
 {
@@ -593,6 +623,7 @@ No response body returned upon successful request.
 ```
 
 **Status Code:** `500`
+
 **Response Body (Internal server error):**
 ```json
 {
@@ -619,6 +650,7 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```html
 <html>
@@ -651,6 +683,7 @@ No Request Body processed by this endpoint
 
 ##### Success
 **Status Code:** `200`
+
 **Response Body:**
 ```
 Page hit metric has been reset to 0. All users have been deleted from the database.
@@ -658,6 +691,7 @@ Page hit metric has been reset to 0. All users have been deleted from the databa
 
 ##### Failure
 **Status Code:** `403`
+
 **Response Body:**
 ```json
 {
@@ -666,6 +700,7 @@ Page hit metric has been reset to 0. All users have been deleted from the databa
 ```
 
 **Status Code:** `500`
+
 **Response Body:**
 ```json
 {
