@@ -61,7 +61,7 @@ func main() {
 	/// API HEALTHZ ENDPOINT ///
 
 	// Register server readiness handler
-	mux.HandleFunc("GET /api/healthz", readinessHandler)
+	mux.HandleFunc("GET /api/health", readinessHandler)
 
 	//// API USERS ENDPOINT ////
 
