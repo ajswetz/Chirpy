@@ -14,6 +14,8 @@ import (
 
 func main() {
 
+	////// LOAD .ENV AND STORE VALUES INTO srvState apiConfig //////
+
 	// Load .env file
 	godotenv.Load()
 
@@ -31,18 +33,24 @@ func main() {
 	// Get secret key from .env
 	secret := os.Getenv("SECRET_KEY")
 
+	// Get Polka API KEY from .env
+	polkaKey := os.Getenv("POLKA_KEY")
+
 	// Create server state tracker
 	srvState := &apiConfig{
 		fileserverHits: atomic.Int32{},
 		db:             dbQueries,
 		platform:       platform,
 		secret:         secret,
+		polkaKey:       polkaKey,
 	}
+
+	////////////////////////////////////////////////////////////////
+
+	////// REGISTER HANDLERS //////
 
 	// Create new HTTP request multiplexer
 	mux := http.NewServeMux()
-
-	////// REGISTER HANDLERS //////
 
 	/// APP ENDPOINT ///
 
@@ -87,6 +95,11 @@ func main() {
 
 	// Register delete chirp handler
 	mux.HandleFunc("DELETE /api/chirps/{chirpID}", srvState.deleteChirpHandler)
+
+	//// API POLKA WEBHOOKS ENDPOINT ////
+
+	// Register polka webhooks upgrade user handler
+	mux.HandleFunc("POST /api/polka/webhooks", srvState.upgradeToChirpyRedHandler)
 
 	/// ADMIN ENDPOINT ///
 

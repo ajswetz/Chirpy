@@ -16,7 +16,8 @@ VALUES (
 RETURNING id,
     created_at,
     updated_at,
-    email;
+    email,
+    is_chirpy_red;
 -- name: DeleteAllUsers :exec
 DELETE FROM users;
 -- name: GetUserByEmail :one
@@ -32,4 +33,9 @@ WHERE id = $3
 RETURNING id,
     created_at,
     updated_at,
-    email;
+    email,
+    is_chirpy_red;
+-- name: SetChirpyRedTrue :exec
+UPDATE users
+SET is_chirpy_red = TRUE
+WHERE id = $1;

@@ -59,10 +59,11 @@ func (cfg *apiConfig) updateUserHandler(w http.ResponseWriter, r *http.Request) 
 
 	// User account updated successfully - send JSON response
 	updatedUser := User{
-		ID:        dbUpdatedUser.ID,
-		CreatedAt: dbUpdatedUser.CreatedAt,
-		UpdatedAt: dbUpdatedUser.UpdatedAt,
-		Email:     dbUpdatedUser.Email,
+		ID:          dbUpdatedUser.ID,
+		CreatedAt:   dbUpdatedUser.CreatedAt,
+		UpdatedAt:   dbUpdatedUser.UpdatedAt,
+		Email:       dbUpdatedUser.Email,
+		IsChirpyRed: dbUpdatedUser.IsChirpyRed,
 	}
 	respondWithJSON(w, http.StatusOK, updatedUser)
 

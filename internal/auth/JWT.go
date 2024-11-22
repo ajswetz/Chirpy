@@ -1,10 +1,7 @@
 package auth
 
 import (
-	"fmt"
 	"log"
-	"net/http"
-	"strings"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -64,17 +61,4 @@ func ValidateJWT(tokenString, tokenSecret string) (uuid.UUID, error) {
 	// Return validated user ID as uuid.UUID
 	return userID, nil
 
-}
-
-func GetBearerToken(headers http.Header) (string, error) {
-
-	authHeader := headers.Get("Authorization")
-	if authHeader == "" {
-		return "", fmt.Errorf("no values associated with the 'Authorization' key in the headers received")
-	}
-
-	token, _ := strings.CutPrefix(authHeader, "Bearer")
-	token = strings.TrimLeft(token, " ")
-
-	return token, nil
 }
