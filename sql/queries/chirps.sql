@@ -8,19 +8,28 @@ VALUES (
         $2
     )
 RETURNING *;
--- name: GetAllChirps :many
-SELECT *
-FROM chirps
-ORDER BY created_at ASC;
 -- name: GetSingleChirp :one
 SELECT *
 from chirps
 WHERE id = $1;
--- name: GetChirpsForGivenAuthor :many
+-- name: GetAllChirpsAsc :many
+SELECT *
+FROM chirps
+ORDER BY created_at ASC;
+-- name: GetAllChirpsDesc :many
+SELECT *
+FROM chirps
+ORDER BY created_at DESC;
+-- name: GetChirpsForGivenAuthorAsc :many
 SELECT *
 FROM chirps
 WHERE user_id = $1
 ORDER BY created_at ASC;
+-- name: GetChirpsForGivenAuthorDesc :many
+SELECT *
+FROM chirps
+WHERE user_id = $1
+ORDER BY created_at DESC;
 -- name: DeleteChirp :exec
 DELETE FROM chirps
 WHERE id = $1;
