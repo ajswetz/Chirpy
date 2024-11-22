@@ -206,7 +206,7 @@ Example:
 
 ##### Failure
 **Status Code:** `401`
-**Response Body (Incorred email or password):**
+**Response Body (Incorrect email or password):**
 ```json
 {
   "error": "Incorrect email or password"
